@@ -45,6 +45,10 @@ def callback():
 
 
 #以下でWebhookから送られてきたイベントをどのように処理するかを記述する
+@handler.add(FollowEvent)
+def follow(event):
+    UserID = event.source.user_id
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     line_bot_api.reply_message(
