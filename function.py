@@ -1,3 +1,5 @@
 #関数をまとめておきます
 def add__friend(event):
 
+def remove_friend(event):
+
