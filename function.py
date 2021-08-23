@@ -5,4 +5,4 @@ def remove_friend(event):
 
 def response(event):
 
-    def send_response(event): 
+def send_response(event): 
