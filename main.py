@@ -10,6 +10,7 @@ from linebot.models import *
 
 import os
 import js
+import function
 
 app = Flask(__name__)
 
@@ -57,6 +58,7 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=event.message.text)
     )
+function.response()
 print("test")
 # ポート番号の設定
 if __name__ == "__main__":
