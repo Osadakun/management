@@ -51,6 +51,7 @@ def callback():
 @handler.add(FollowEvent)
 def follow(event):
     UserID = event.source.user_id
+    function.add_friend(UserID)
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
