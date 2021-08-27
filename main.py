@@ -60,7 +60,7 @@ def handle_message(event):
         TextSendMessage(text=event.message.text)
     )
 function.response()
-print("test")
+
 # ポート番号の設定
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
