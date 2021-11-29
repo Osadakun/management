@@ -28,7 +28,6 @@ def add(userID):
 		ran = random.randrange(0,4)
 		sleep(ran)
 
-
 def remove(UserID):
 	num = worksheet.cell(1,1).value
 	num = int(num)
