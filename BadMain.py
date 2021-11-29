@@ -10,7 +10,6 @@ from linebot.models import (
 	UnfollowEvent, FollowEvent
 )
 import os
-import json
 import gspread
 import oauth2client
 import linebot
@@ -51,17 +50,16 @@ def handle_follow(event):
 	友だち追加したときのイベント。
 	UsersDBにID、アクティビティを追加。
 	"""
-    UserID = event.source.user_id
-    line_bot_api.reply_message(event.reply_token,
+	UserID = event.source.user_id
+	line_bot_api.reply_message(event.reply_token,
 		[
 			TextSendMessage(text='minatoJBSC【公式】です。\n友達追加ありがとうございます!!'),
 			TextSendMessage(text='これからは練習の休み、遅刻の連絡はこのアカウントからお願いします。'),
 			TextSendMessage(text='本日の練習をお休みする場合は「休み」、遅れて参加の場合は「遅刻」と送信して下さい。')
 		]
 	)
-	
 
-    UserID = event.source.user_id
+	UserID = event.source.user_id
 	BadPush.add(UserID)
 	line_bot_api.reply_message(event.reply_token,
 		[
@@ -79,7 +77,6 @@ def handle_unfollow(event):
 	"""
 	UserID = event.source.user_id
 	BadPush.remove(UserID)
-	
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
