@@ -90,8 +90,6 @@ def changePlayer(UserID,PlayerName):
 		except Exception as e:	# 例外発生時は0～4秒の時間待ち。同期ずらし。
 			ran = random.randrange(0,4)
 			sleep(ran)
-		else:					# 例外が発生しなかった場合、for を break
-			break
 
 def getPlayer(UserID):
 	cell = worksheet.find(UserID)
