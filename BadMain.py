@@ -197,7 +197,7 @@ def handle_message(event):
 					TextSendMessage(text="上記で登録します。よろしければ「はい」を、訂正がある場合は「いいえ」を送信して下さい。")
 				]
 			)
-			line_bot_api.push_message(to, messages=send_message)
+			line_bot_api.push_message(UserID, messages=send_message)
 
 if __name__ == "__main__":
 	port = int(os.getenv("PORT",5000))
