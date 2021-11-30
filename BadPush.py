@@ -12,6 +12,7 @@ client = gspread.authorize(credentials)
 SPREADSHEET_KEY = "1LNzkmXJ1Y4ItqZdv0au1ekdxiq_nzuZ398TYZUiPvSU"
 worksheet = client.open_by_key(SPREADSHEET_KEY).sheet1
 
+
 def add(userID):
 	num = worksheet.cell(1,1).value
 	num = int(num)
