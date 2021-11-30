@@ -4,7 +4,13 @@ import json
 import random
 
 scopes = ["https://spreadsheets.google.com/feeds","https://www.googleapis.com/auth/drive"]
+json_file = "badbot-333602-9b898ec51bac.json"
+credentials = ServiceAccountCredentials.from_json_keyfile_name(json_file, scopes=scopes)
 
+# スプレッドシート用クライアントの準備
+client = gspread.authorize(credentials)
+SPREADSHEET_KEY = "1LNzkmXJ1Y4ItqZdv0au1ekdxiq_nzuZ398TYZUiPvSU"
+worksheet = client.open_by_key(SPREADSHEET_KEY).sheet1
 
 def add(userID):
 	num = worksheet.cell(1,1).value
