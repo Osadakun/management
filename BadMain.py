@@ -89,7 +89,6 @@ def handle_message(event):
 	UserID = event.source.user_id
 	text = event.message.text
 	activity = BadPush.checkActivity(UserID)
-	d_today = datetime.date.today()
 
 	if activity == "初期状態":
 		if (text =="休み")or(text =="休")or(text =="やすみ"):
@@ -190,6 +189,7 @@ def handle_message(event):
 			Reason_text = BadPush.getReason(UserID)
 			Player_text = BadPush.getPlayer(UserID)
 			Remarks_text = BadPush.getRemarks(UserID)
+			d_today = datetime.date.today()
 			send_message = d_today+"\n"+Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text
 			line_bot_api.reply_message(event.reply_token,
 				[
