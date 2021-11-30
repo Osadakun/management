@@ -156,7 +156,7 @@ def handle_message(event):
 		Remarks_text = BadPush.getRemarks(UserID)
 		line_bot_api.reply_message(event.reply_token,
 			[
-				TextSendMessage(text=Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text),
+				TextSendMessage(text=d_today+"\n"+Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text),
 				TextSendMessage(text="上記で登録します。よろしければ「はい」を、訂正がある場合は「いいえ」を送信して下さい。")
 			]
 		)
@@ -170,7 +170,7 @@ def handle_message(event):
 			to = "U2beb3645d43471171df9ef7886968c39"
 
 			messages = TextSendMessage(text=d_today+"\n"+Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text)
-			line_bot_api.multicast(UserID, messages=messages)
+			line_bot_api.push_message(UserID, messages=messages)
 			line_bot_api.reply_message(event.reply_token,
 				[
 					TextSendMessage(text='連絡を受け付けました。ありがとうございました。'),
