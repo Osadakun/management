@@ -26,6 +26,7 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi("wTK1FUq7YT+6R6mv+gw2WSwUqee3rk4RKgKSOLR+mquDRaYOvIztvgJoO1DBzDZ7ilpXpEuxCNrCO230IokzphUHs1dFhnEAapeTKGgwlFCp3G77QUlgzmD1hp2fgi57Gs8Dr8eTsrLvj2tPuvor0wdB04t89/1O/w1cDnyilFU=")
 handler = WebhookHandler("4baa838b574403306f55f93c8c032e2b")
+d_today = datetime.date.today()
 
 @app.route("/")
 def hello_world():
@@ -168,7 +169,7 @@ def handle_message(event):
 			Remarks_text = BadPush.getRemarks(UserID)
 			to = "U2beb3645d43471171df9ef7886968c39"
 
-			messages = TextSendMessage(text=Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text)
+			messages = TextSendMessage(text=d_today+"\n"+Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text)
 			line_bot_api.multicast(to, messages=messages)
 			line_bot_api.reply_message(event.reply_token,
 				[
@@ -189,7 +190,6 @@ def handle_message(event):
 			Reason_text = BadPush.getReason(UserID)
 			Player_text = BadPush.getPlayer(UserID)
 			Remarks_text = BadPush.getRemarks(UserID)
-			d_today = datetime.date.today()
 			send_message = d_today+"\n"+Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text
 			line_bot_api.reply_message(event.reply_token,
 				[
@@ -197,7 +197,6 @@ def handle_message(event):
 					TextSendMessage(text="上記で登録します。よろしければ「はい」を、訂正がある場合は「いいえ」を送信して下さい。")
 				]
 			)
-			line_bot_api.push_message(UserID, messages=send_message)
 
 if __name__ == "__main__":
 	port = int(os.getenv("PORT",5000))
