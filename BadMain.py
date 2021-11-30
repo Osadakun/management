@@ -26,7 +26,7 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi("wTK1FUq7YT+6R6mv+gw2WSwUqee3rk4RKgKSOLR+mquDRaYOvIztvgJoO1DBzDZ7ilpXpEuxCNrCO230IokzphUHs1dFhnEAapeTKGgwlFCp3G77QUlgzmD1hp2fgi57Gs8Dr8eTsrLvj2tPuvor0wdB04t89/1O/w1cDnyilFU=")
 handler = WebhookHandler("4baa838b574403306f55f93c8c032e2b")
-d_today = datetime.date.today()
+d_today = str(datetime.date.today())
 
 @app.route("/")
 def hello_world():
