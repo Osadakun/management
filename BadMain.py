@@ -13,6 +13,7 @@ import os
 import gspread
 import oauth2client
 import linebot
+import datetime
 
 import BadPush
 
@@ -88,6 +89,7 @@ def handle_message(event):
 	UserID = event.source.user_id
 	text = event.message.text
 	activity = BadPush.checkActivity(UserID)
+ d_today = datetime.date.today()
 
 	if activity == "初期状態":
 		if (text =="休み")or(text =="休")or(text =="やすみ"):
@@ -191,7 +193,7 @@ def handle_message(event):
 			Remarks_text = BadPush.getRemarks(UserID)
 			line_bot_api.reply_message(event.reply_token,
 				[
-					TextSendMessage(text=Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text),
+					TextSendMessage(text=d_today+"\n"+Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text),
 					TextSendMessage(text="上記で登録します。よろしければ「はい」を、訂正がある場合は「いいえ」を送信して下さい。")
 				]
 			)
