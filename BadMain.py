@@ -170,10 +170,10 @@ def handle_message(event):
 			to = "U2beb3645d43471171df9ef7886968c39"
 
 			messages = TextSendMessage(text=d_today+"\n"+Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text)
-			line_bot_api.multicast(to, messages=messages)
+			line_bot_api.multicast(UserID, messages=messages)
 			line_bot_api.reply_message(event.reply_token,
 				[
-					TextSendMessage(text = '連絡を受け付けました。ありがとうございました。'),
+					TextSendMessage(text='連絡を受け付けました。ありがとうございました。'),
 					TextSendMessage(text='本日の練習をお休みする場合は「休み」、遅れて参加の場合は「遅刻」と送信して下さい。')
 				]
 			)
