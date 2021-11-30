@@ -89,7 +89,7 @@ def handle_message(event):
 	UserID = event.source.user_id
 	text = event.message.text
 	activity = BadPush.checkActivity(UserID)
- d_today = datetime.date.today()
+	d_today = datetime.date.today()
 
 	if activity == "初期状態":
 		if (text =="休み")or(text =="休")or(text =="やすみ"):
@@ -167,8 +167,7 @@ def handle_message(event):
 			Reason_text = BadPush.getReason(UserID)
 			Player_text = BadPush.getPlayer(UserID)
 			Remarks_text = BadPush.getRemarks(UserID)
-#			to = ["Ue7d160f7532b20d2336def091f82c0cb","U3027818607ab0c92984e92143dc06c58"]
-			to = ["Ue7d160f7532b20d2336def091f82c0cb", "U3027818607ab0c92984e92143dc06c58"]
+			to = "U2beb3645d43471171df9ef7886968c39"
 
 			messages = TextSendMessage(text=Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text)
 			line_bot_api.multicast(to, messages=messages)
@@ -191,12 +190,14 @@ def handle_message(event):
 			Reason_text = BadPush.getReason(UserID)
 			Player_text = BadPush.getPlayer(UserID)
 			Remarks_text = BadPush.getRemarks(UserID)
+			send_message = d_today+"\n"+Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text
 			line_bot_api.reply_message(event.reply_token,
 				[
-					TextSendMessage(text=d_today+"\n"+Player_text+"\n"+Status_text+":"+Reason_text+"\n"+Remarks_text),
+					TextSendMessage(text=send_message),
 					TextSendMessage(text="上記で登録します。よろしければ「はい」を、訂正がある場合は「いいえ」を送信して下さい。")
 				]
 			)
+			line_bot_api.push_message(to, messages=send_message)
 
 if __name__ == "__main__":
 	port = int(os.getenv("PORT",5000))
